@@ -19,4 +19,28 @@ app.get("/about", (req, res) => {
     });
 });
 
+app.get("/mirkomil", (req, res) => {
+    res.json({
+        name: "Mirkomil",
+        age: 48,
+        hobby: {
+            1: "remont",
+            2: "programmalar bilan tanishish",
+            3: "uy ishlari",
+        }
+    });
+});
+
+app.get("/yulduz", (req, res) => {
+    res.json({
+        name: "Yulduz",
+        age: 43,
+        hobby: {
+            1: "kitob oqish",
+            2: "taom pishirish",
+            3: "masalluqlar",
+        }
+    });
+});
+
 export const handler = serverless(app);
