@@ -1,7 +1,6 @@
 [build]
-  command = "npm install"
-  functions = "functions"
   publish = "dist"
+  functions = "functions"
 
 [[redirects]]
   from = "/*"

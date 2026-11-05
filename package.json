@@ -2,14 +2,14 @@
   "name": "backend",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "functions/api.mjs",
   "scripts": {
-    "start": "nodemon index.js"
+    "start": "node functions/api.mjs"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "type": "commonjs",
+  "type": "module",
   "dependencies": {
     "body-parser": "^2.4.0",
     "express": "^5.3.0",
