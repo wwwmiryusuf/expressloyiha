@@ -1,46 +1,28 @@
-import express from "express";
-import serverless from "serverless-http";
+import express from 'express';
+import path from 'path';
+import bodyParser from 'body-parser';
 
 const app = express();
 
-app.get("/", (req, res) => {
-    res.send("Welcome to my API server");
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json());
+
+app.get('/', (req, res) => {
+    res.sendFile(path.resolve('dist', 'index.html'));
 });
 
-app.get("/about", (req, res) => {
-    res.json({
-        name: "yusuf",
-        age: 14,
-        hobby: {
-            1: "musics",
-            2: "games",
-            3: "xantares peek",
-        }
-    });
+app.get('/dashboard', (req, res) => {
+    res.sendFile(path.resolve('dist', 'dashboard.html'));
 });
 
-app.get("/mirkomil", (req, res) => {
-    res.json({
-        name: "Mirkomil",
-        age: 48,
-        hobby: {
-            1: "remont",
-            2: "programmalar bilan tanishish",
-            3: "uy ishlari",
-        }
-    });
+app.post('/login', (req, res) => {
+    const { login, password } = req.body;
+
+    if (login === 'admin' && password === '12345') {
+        res.redirect('/dashboard');
+    } else {
+        res.redirect('/?error=true');
+    }
 });
 
-app.get("/yulduz", (req, res) => {
-    res.json({
-        name: "Yulduz",
-        age: 43,
-        hobby: {
-            1: "kitob oqish",
-            2: "taom pishirish",
-            3: "masalluqlar",
-        }
-    });
-});
-
-export const handler = serverless(app);
+export default app;
